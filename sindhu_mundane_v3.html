@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sindhu Yamsani — Chief of Staff Intern · Mundane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f2f1ef;
+    --text: #1a1917;
+    --muted: #8a8984;
+    --border: #d8d7d3;
+  }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+  }
+
+  .logo {
+    display: grid;
+    grid-template-columns: 8px 8px;
+    grid-template-rows: 8px 8px 8px;
+    gap: 4px;
+  }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text); }
+  .dot.empty { background: transparent; }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; font-size: 0.85rem; font-weight: 300; }
+  .nav-links a { color: var(--text); text-decoration: none; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 0.4; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 0 4rem 8rem; }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero { padding: 5rem 0 4rem; border-bottom: 1px solid var(--border); }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.05s ease both;
+  }
+
+  .hero-thesis {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 620px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+
+  .metric {
+    padding: 1.5rem 2rem 1.5rem 0;
+    border-right: 1px solid var(--border);
+    margin-right: 2rem;
+  }
+  .metric:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+  .metric-num {
+    font-size: 2.6rem;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .metric-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  .fit-row {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .fit-row:last-child { border-bottom: none; }
+
+  .fit-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .fit-tag.strong { color: var(--text); border-color: var(--text); }
+
+  .fit-req-label { font-size: 0.88rem; font-weight: 400; line-height: 1.5; margin-top: 0.25rem; }
+  .fit-proof { font-size: 0.95rem; line-height: 1.8; }
+  .fit-proof strong { font-weight: 500; }
+
+  .callout {
+    background: #e6e5e2;
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .callout strong { font-weight: 500; }
+
+  .mini-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.75rem 0;
+  }
+
+  .mini-stat {
+    background: #eae9e6;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+
+  .mini-stat-num {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .mini-stat-label { font-size: 0.72rem; color: var(--muted); line-height: 1.3; }
+
+  .q-block { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  .q-block:last-child { border-bottom: none; }
+
+  .q-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+  .q-answer { font-size: 0.95rem; line-height: 1.85; max-width: 640px; }
+  .q-answer strong { font-weight: 500; }
+
+  .days-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 1rem; }
+
+  .day-col {
+    padding: 1.5rem 2rem 1.5rem 0;
+    border-right: 1px solid var(--border);
+    margin-right: 2rem;
+  }
+  .day-col:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+  .day-period {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+  }
+  .day-title { font-size: 1rem; font-weight: 400; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+
+  .day-items { list-style: none; font-size: 0.85rem; color: var(--muted); line-height: 1.9; }
+  .day-items li::before { content: "— "; color: var(--border); }
+  .day-items strong { font-weight: 400; color: var(--text); }
+
+  .why-text { font-size: 1.05rem; line-height: 1.85; max-width: 640px; }
+  .why-text strong { font-weight: 500; }
+
+  footer {
+    padding: 2.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .footer-contact a { color: var(--muted); text-decoration: none; margin-left: 2rem; }
+  .footer-contact a:hover { color: var(--text); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 700px) {
+    nav, .page, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .metrics-grid, .days-grid, .mini-stats { grid-template-columns: 1fr 1fr; }
+    .fit-row { grid-template-columns: 1fr; gap: 0.75rem; }
+    .metric { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" aria-label="logo">
+    <div class="dot empty"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#who">who I am</a></li>
+    <li><a href="#fit">fit</a></li>
+    <li><a href="#questions">questions</a></li>
+    <li><a href="#thirty">first 30 days</a></li>
+    <li><a href="#why">why Mundane</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+
+  <!-- hero -->
+  <section class="hero" id="who">
+    <p class="section-label">candidate brief · chief of staff intern</p>
+    <h1>Sindhu Yamsani</h1>
+    <p class="hero-sub">JHU MS Engineering Management &nbsp;·&nbsp; syamsan1@jh.edu &nbsp;·&nbsp; +1 443 415 6213</p>
+    <p class="hero-thesis">
+      Four cross-functional operator roles in under two years — including product strategy inside an industrial robotics company where I built market scoring models, mapped 15+ competitors, and redesigned how the company positions and prices its platform. I join technical founding teams, translate ambiguity into structure, and close execution gaps. That is the CoS job at Mundane.
+    </p>
+  </section>
+
+  <!-- metrics -->
+  <section class="section">
+    <p class="section-label">impact in numbers</p>
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-num">85%</div>
+        <div class="metric-desc">loan processing time cut at Deloitte on a $204B U.S. financial services client</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">33%</div>
+        <div class="metric-desc">projected OR turnover reduction at Johns Hopkins Hospital</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">~200</div>
+        <div class="metric-desc">additional surgeries enabled annually from that analysis</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">9</div>
+        <div class="metric-desc">European markets scored across 8 dimensions for Flowbotic's expansion strategy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- fit -->
+  <section class="section" id="fit">
+    <p class="section-label">how I map to the role</p>
+
+    <div class="fit-row">
+      <div>
+        <span class="fit-tag">required</span>
+        <p class="fit-req-label">Operator excellence. End-to-end ownership in demanding environments.</p>
+      </div>
+      <p class="fit-proof">
+        At Deloitte, owned the full arc from requirements to QA sign-off across <strong>15+ agile sprints</strong> for a $204B client. At JHH, ran 20+ stakeholder interviews, analyzed OR data independently, and produced a recommendation with real projected impact. I don't hand things off at the hard parts.
+      </p>
+    </div>
+
+    <div class="fit-row">
+      <div>
+        <span class="fit-tag">required</span>
+        <p class="fit-req-label">Strong analytical skills — comfort with models, metrics, and incomplete information.</p>
+      </div>
+      <p class="fit-proof">
+        At Flowbotic, built a custom <strong>Labor Replacement Willingness Index (LRWI)</strong> — a weighted scoring model (0.6 × Labor Cost Index + 0.4 × Living Cost Index) to rank 9 European markets for robot deployment priority. Scored each market across 8 variables including AGV market revenue, competitor density, industry mix, and job vacancy rate. <strong>France ranked #1</strong> at $58.59M AGV market revenue with the largest 3PL and automotive footprint. Then designed a <strong>metrics readiness framework</strong> mapping exactly which operational data Flowbotic needed to collect before unlocking each pricing tier — from service bundles to RaaS.
+      </p>
+    </div>
+
+    <div class="fit-row">
+      <div>
+        <span class="fit-tag">required</span>
+        <p class="fit-req-label">Support financial planning. Identify execution gaps and design systems to address them.</p>
+      </div>
+      <p class="fit-proof">
+        At Flowbotic, ran a full pricing audit and identified <strong>10 uncaptured value drivers</strong> — including labor reduction, safety improvement, ERP/WMS integration, AI-enabled efficiency, and operational analytics — none of which were being monetized. Recommended a <strong>TCO-based sales approach (€/pallet moved)</strong> to shift the enterprise conversation from unit price to total cost of ownership. This is the same financial framing that unlocks larger contracts and longer sales cycles.
+      </p>
+    </div>
+
+    <div class="fit-row">
+      <div>
+        <span class="fit-tag">required</span>
+        <p class="fit-req-label">Connective layer across engineering, product, and operations.</p>
+      </div>
+      <p class="fit-proof">
+        At Deloitte: formal bridge between engineering, business, and QA — translated requirements into PRDs with acceptance criteria and held engineering accountable to them. At JHH: coordinated across surgeons, nurses, and administrators simultaneously. At Flowbotic: <strong>aligned competitive positioning, software differentiation roadmap, AI strategy, safety framework, and pricing model into one coherent platform strategy.</strong>
+      </p>
+    </div>
+
+    <div class="fit-row">
+      <div>
+        <span class="fit-tag">nice to have</span>
+        <p class="fit-req-label">Consulting background.</p>
+      </div>
+      <p class="fit-proof">
+        <strong>Deloitte USI Consulting</strong> (full-time, 13 months) plus three consecutive strategy engagements at JHH, Checkpoint Surgical, and Flowbotic. Four consulting projects across fintech, healthcare, and robotics before age 25.
+      </p>
+    </div>
+
+    <div class="fit-row">
+      <div>
+        <span class="fit-tag strong">strongest fit</span>
+        <p class="fit-req-label">Deep-tech exposure — robotics, AI/ML, hardware.</p>
+      </div>
+      <div class="fit-proof">
+        <div class="callout">
+          <strong>Flowbotic (Dec 2025 – Jan 2026):</strong> Embedded inside an industrial robotics company operating in Mundane's competitive landscape. Built a 3-tier competitive framework across <strong>MiR, ABB, Kivnon, Hikrobot, Robotnik</strong>, and 10+ others. Shifted Flowbotic's positioning from "robot + software vendor" to <strong>integration-first intralogistics platform.</strong> Identified specific AI use cases: automatic map segmentation, AI-recommended safety zones, optimal charger placement, predictive maintenance, and real-time congestion rerouting. Designed the safety & compliance framework anchored to <strong>ISO 3691-4/EN standards</strong> as an enterprise differentiator.
+        </div>
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <span class="mini-stat-num">9</span>
+            <span class="mini-stat-label">European markets scored</span>
+          </div>
+          <div class="mini-stat">
+            <span class="mini-stat-num">15+</span>
+            <span class="mini-stat-label">competitors mapped by tier</span>
+          </div>
+          <div class="mini-stat">
+            <span class="mini-stat-num">10</span>
+            <span class="mini-stat-label">uncaptured value drivers identified</span>
+          </div>
+        </div>
+        Hexagon Capability Center: re-architected a search product cutting query latency <strong>85%</strong> for an industrial hardware company. Won Hexagon's global hackathon with a <strong>deep-learning defect detection system.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- candidate questions -->
+  <section class="section" id="questions">
+    <p class="section-label">your three candidate questions</p>
+
+    <div class="q-block">
+      <p class="q-label">most impactful work owned end-to-end</p>
+      <p class="q-answer">
+        At <strong>Johns Hopkins Hospital</strong>, I owned an OR throughput analysis from scratch — designed and ran 20+ stakeholder interviews across three clinical roles, independently analyzed turnover data, and produced a recommendation projecting a <strong>33% reduction in turnover time</strong> and approximately <strong>200 additional surgeries per year.</strong> No one handed me a methodology. I built it, ran it, and presented it to hospital leadership.
+      </p>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">operating under ambiguity and delivering results</p>
+      <p class="q-answer">
+        At <strong>Flowbotic</strong>, I joined with no prior research and a product being commoditized in a crowded market. I built a custom scoring model to rank 9 European expansion markets, mapped 15+ competitors into a structured 3-tier framework, identified 10 uncaptured revenue drivers in the pricing model, and designed the AI use case roadmap for deployment and operations. <strong>Within two months, Flowbotic had a market entry strategy, a repositioned platform narrative, and a pricing framework it didn't have before. No playbook existed. I wrote it.</strong>
+      </p>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">why effective working with a founding team</p>
+      <p class="q-answer">
+        I have spent the last year operating without layers — at JHH, Checkpoint, and Flowbotic, <strong>no manager sat between me and the executives I was advising.</strong> I know how to earn trust quickly, communicate with precision, and take a problem off a founder's plate rather than return it with more questions. I have shipped software, analyzed data, talked to users, and built strategy inside a robotics company. I understand what it costs to build things.
+      </p>
+    </div>
+  </section>
+
+  <!-- first 30 days -->
+  <section class="section" id="thirty">
+    <p class="section-label">first 30 days</p>
+    <div class="days-grid">
+      <div class="day-col">
+        <p class="day-period">days 1 – 10</p>
+        <p class="day-title">listen and map</p>
+        <ul class="day-items">
+          <li>Shadow the founding team across every recurring meeting</li>
+          <li>Map <strong>where decisions get made</strong> and where they stall</li>
+          <li>Identify the top 3 things pulling founders from their highest-leverage work</li>
+          <li>Read every internal doc, deck, and customer interview on file</li>
+        </ul>
+      </div>
+      <div class="day-col">
+        <p class="day-period">days 11 – 21</p>
+        <p class="day-title">identify and structure</p>
+        <ul class="day-items">
+          <li>Surface the <strong>2–3 highest-friction execution gaps</strong> slowing the team</li>
+          <li>Draft a lightweight operating rhythm — weekly priorities, async updates</li>
+          <li>Take ownership of one cross-functional initiative end-to-end</li>
+          <li>Build a stakeholder map for key external relationships</li>
+        </ul>
+      </div>
+      <div class="day-col">
+        <p class="day-period">days 22 – 30</p>
+        <p class="day-title">own and accelerate</p>
+        <ul class="day-items">
+          <li>Present a structured view of <strong>execution gaps with proposed fixes</strong></li>
+          <li>Have at least one initiative fully off the founders' plates</li>
+          <li>Establish a repeatable system for tracking cross-team commitments</li>
+          <li>Propose a <strong>60-day scope</strong> based on what I've learned</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- why mundane -->
+  <section class="section" id="why" style="border-bottom: none;">
+    <p class="section-label">why Mundane specifically</p>
+    <p class="why-text">
+      I have worked inside the industrial robotics market. At Flowbotic I scored 9 European markets, mapped MiR, ABB, and 13 other competitors, and identified the strategic gap between hardware-led vendors and what enterprise buyers actually want: <strong>integration certainty, TCO visibility, and deployment predictability.</strong> Mundane's bet on embodied intelligence and real commercial deployment sits at exactly that gap.
+      <br><br>
+      I also understand what slows robot deployments down at the site level — ERP integration complexity, workflow readiness gaps, safety compliance overhead — because I built the frameworks to diagnose and address them. That operational depth, combined with the analytical and cross-functional work I've done, makes me a different kind of CoS candidate for a robotics company.
+      <br><br>
+      A seed-stage CoS role is where I want to be. The scope is real, the stakes are real, and the team is small enough that <strong>judgment and execution actually compound.</strong> I am not looking for a structured internship. I want to help build something.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <span>© Sindhu Yamsani · candidate brief for Mundane</span>
+  <div class="footer-contact">
+    <a href="mailto:syamsan1@jh.edu">syamsan1@jh.edu</a>
+    <a href="https://linkedin.com/in/sindhu-yamsani" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
